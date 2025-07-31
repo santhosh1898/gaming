@@ -27,3 +27,18 @@ def print_board(snake,food):
         else:
             print("Invalid direction,use left/right/down/up.")
             return snake,False
+#wall conditions
+        if new_head[0]<0 or new_head[0]>=width or new_head[1]<0 or new_head[1]>=height:
+            return snake,'wall'
+#self collide conditions
+        if new_head in snake:
+            return snake,'self'
+        snake.append(new_head)
+        return snake,new_head
+def place_food(snake):
+    while True:
+        x=random.randint(0,width-1)
+        y=random.randint(0,height-1)
+        if [x,y] not in snake:
+            return[x,y]
+        
